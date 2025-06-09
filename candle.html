@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Voor Alexandra 🕯️</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				background: radial-gradient(#1a1a1a, #000);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				font-family: "Segoe UI", sans-serif;
+				color: #fff;
+				padding: 20px;
+				text-align: center;
+			}
+
+			.candle {
+				position: relative;
+				width: 60px;
+				height: 150px;
+				background: #ffeaa7;
+				border-radius: 12px;
+				box-shadow: 0 0 25px 10px #f5d76e;
+				margin-bottom: 40px;
+			}
+
+			.flame {
+				position: absolute;
+				top: -60px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 30px;
+				height: 60px;
+				background: radial-gradient(
+					circle at 50% 30%,
+					#fff176,
+					#ff6f00,
+					#e65100
+				);
+				border-radius: 50%;
+				animation: flicker 0.3s infinite alternate;
+				box-shadow: 0 0 50px 20px rgba(255, 140, 0, 0.7),
+					0 0 100px 60px rgba(255, 215, 0, 0.1);
+			}
+
+			@keyframes flicker {
+				0% {
+					transform: translateX(-50%) scale(1);
+					opacity: 0.85;
+				}
+				100% {
+					transform: translateX(-50%) scale(1.1);
+					opacity: 1;
+				}
+			}
+
+			.glow {
+				position: absolute;
+				top: -90px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100px;
+				height: 100px;
+				background: radial-gradient(
+					circle,
+					rgba(255, 200, 0, 0.2) 0%,
+					transparent 80%
+				);
+				border-radius: 50%;
+				animation: pulse 2s infinite;
+			}
+
+			@keyframes pulse {
+				0% {
+					transform: translateX(-50%) scale(1);
+					opacity: 0.3;
+				}
+				50% {
+					transform: translateX(-50%) scale(1.2);
+					opacity: 0.6;
+				}
+				100% {
+					transform: translateX(-50%) scale(1);
+					opacity: 0.3;
+				}
+			}
+
+			h1 {
+				font-size: 1.6em;
+				margin-bottom: 10px;
+				text-shadow: 0 0 10px #ff6;
+			}
+
+			p {
+				font-size: 1.2em;
+				max-width: 90%;
+				color: #ffebc8;
+				text-shadow: 0 0 5px #ffb74d;
+			}
+
+			.hearts {
+				position: absolute;
+				bottom: 30px;
+				font-size: 1.3em;
+				animation: floatHearts 5s infinite linear;
+				opacity: 0.5;
+			}
+
+			@keyframes floatHearts {
+				0% {
+					transform: translateY(0);
+				}
+				100% {
+					transform: translateY(-100px);
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="candle">
+			<div class="glow"></div>
+			<div class="flame"></div>
+		</div>
+		<h1>Voor mn cute wife Alexandra 💖</h1>
+		<p>
+			Veel succes met je examen<br />partus vaardigheden nog ff doorbijten hhaha
+		</p>
+	</body>
+</html>
