@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Voor Alexandra 🕯️</title>
+		<title>Voor Alexandra ✨🕯️</title>
 		<style>
 			* {
 				margin: 0;
@@ -12,16 +12,112 @@
 			}
 
 			body {
+				font-family: "Segoe UI", sans-serif;
 				background: radial-gradient(#1a1a1a, #000);
+				color: #fff;
+				height: 100vh;
+				overflow: hidden;
 				display: flex;
-				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				height: 100vh;
-				font-family: "Segoe UI", sans-serif;
-				color: #fff;
-				padding: 20px;
 				text-align: center;
+				padding: 20px;
+			}
+
+			#envelope-wrapper {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				animation: fadeIn 2s ease;
+			}
+
+			#envelope {
+				width: 160px;
+				height: 110px;
+				background: #fff3cd;
+				border: 2px solid #ffcc80;
+				border-radius: 10px;
+				box-shadow: 0 0 20px #ffd54f;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				transform: scale(1);
+				transition: transform 0.4s;
+			}
+
+			#envelope:hover {
+				transform: scale(1.05);
+			}
+
+			#envelope::before {
+				content: "✉️";
+				font-size: 2.5em;
+				z-index: 2;
+			}
+
+			#letter {
+				width: 95vw;
+				max-width: 600px;
+				height: 75vh;
+				max-height: 520px;
+				font-size: 1.2em;
+				line-height: 1.8;
+				display: none;
+				opacity: 0;
+				animation: slideUp 1s forwards;
+				background: repeating-linear-gradient(
+					to bottom,
+					#fffdf2,
+					#fffdf2 32px,
+					#e0dede 32px,
+					#e0dede 33px
+				);
+				padding: 40px 25px 40px;
+				border-radius: 16px;
+				box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+				color: #333;
+				text-align: left;
+				position: relative;
+				overflow-y: hidden;
+				box-sizing: border-box;
+			}
+
+			#typedText {
+				white-space: pre-wrap;
+				font-family: "Georgia", serif;
+				font-size: 1.1em;
+				text-shadow: none;
+			}
+
+			#igniteBtn {
+				margin-top: 20px;
+				padding: 12px 24px;
+				font-size: 1.05em;
+				font-weight: 500;
+				background-color: #ffb74d;
+				border: none;
+				border-radius: 12px;
+				cursor: pointer;
+				color: black;
+				box-shadow: 0 4px 15px rgba(255, 183, 77, 0.4);
+				display: none;
+				animation: fadeIn 2s ease forwards;
+				transition: background 0.2s ease, transform 0.2s ease;
+			}
+
+			#igniteBtn:hover {
+				background-color: #ffc966;
+				transform: scale(1.03);
+			}
+
+			#candle-section {
+				flex-direction: column;
+				align-items: center;
+				display: none;
+				animation: fadeIn 2s ease forwards;
 			}
 
 			.candle {
@@ -31,7 +127,8 @@
 				background: #ffeaa7;
 				border-radius: 12px;
 				box-shadow: 0 0 25px 10px #f5d76e;
-				margin-bottom: 40px;
+				margin: 30px auto;
+				animation: pulseCandle 3s ease infinite;
 			}
 
 			.flame {
@@ -49,8 +146,34 @@
 				);
 				border-radius: 50%;
 				animation: flicker 0.3s infinite alternate;
-				box-shadow: 0 0 50px 20px rgba(255, 140, 0, 0.7),
-					0 0 100px 60px rgba(255, 215, 0, 0.1);
+				box-shadow: 0 0 50px 20px rgba(255, 140, 0, 0.7);
+			}
+			#envelope-wrapper {
+				display: flex;
+				flex-direction: column; /* <<< belangrijk */
+				align-items: center;
+				justify-content: center;
+				animation: fadeIn 2s ease;
+				gap: 15px;
+			}
+
+			#envelope-tip {
+				font-size: 1em;
+				color: #ffebc8;
+				text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+			}
+
+			@keyframes bounce {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-5px);
+				}
+			}
+			#envelope-tip {
+				animation: bounce 2s infinite ease-in-out, fadeIn 1s ease forwards;
 			}
 
 			@keyframes flicker {
@@ -64,77 +187,127 @@
 				}
 			}
 
-			.glow {
-				position: absolute;
-				top: -90px;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 100px;
-				height: 100px;
-				background: radial-gradient(
-					circle,
-					rgba(255, 200, 0, 0.2) 0%,
-					transparent 80%
-				);
-				border-radius: 50%;
-				animation: pulse 2s infinite;
+			@keyframes slideUp {
+				0% {
+					transform: translateY(30px);
+					opacity: 0;
+				}
+				100% {
+					transform: translateY(0);
+					opacity: 1;
+				}
 			}
 
-			@keyframes pulse {
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+
+			@keyframes pulseCandle {
 				0% {
-					transform: translateX(-50%) scale(1);
-					opacity: 0.3;
+					box-shadow: 0 0 20px 8px #f5d76e;
 				}
 				50% {
-					transform: translateX(-50%) scale(1.2);
-					opacity: 0.6;
+					box-shadow: 0 0 30px 15px #f7e58d;
 				}
 				100% {
-					transform: translateX(-50%) scale(1);
-					opacity: 0.3;
-				}
-			}
-
-			h1 {
-				font-size: 1.6em;
-				margin-bottom: 10px;
-				text-shadow: 0 0 10px #ff6;
-			}
-
-			p {
-				font-size: 1.2em;
-				max-width: 90%;
-				color: #ffebc8;
-				text-shadow: 0 0 5px #ffb74d;
-			}
-
-			.hearts {
-				position: absolute;
-				bottom: 30px;
-				font-size: 1.3em;
-				animation: floatHearts 5s infinite linear;
-				opacity: 0.5;
-			}
-
-			@keyframes floatHearts {
-				0% {
-					transform: translateY(0);
-				}
-				100% {
-					transform: translateY(-100px);
-					opacity: 0;
+					box-shadow: 0 0 20px 8px #f5d76e;
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="candle">
-			<div class="glow"></div>
-			<div class="flame"></div>
+		<div id="envelope-wrapper">
+			<p id="envelope-tip">Klik op de envelop om hem te openen ✉️</p>
+
+			<div id="envelope" onclick="openLetter()"></div>
 		</div>
-		<h1>Voor mn cute wife Alexandra 💖</h1>
-		<p>
-			Veel succes met je examen<br />partus vaardigheden nog ff doorbijten hhaha
-		</p>
+
+		<div id="letter">
+			<p id="typedText"></p>
+			<button id="igniteBtn" onclick="showCandle()">
+				Steek het kaarsje aan voor geluk 🕯️
+			</button>
+		</div>
+
+		<div id="candle-section">
+			<div class="candle">
+				<div class="flame"></div>
+			</div>
+			<p
+				style="
+					font-size: 1.2em;
+					color: #ffebc8;
+					max-width: 90%;
+					text-align: center;
+				"
+			>
+				Goedemorgen Alexandra 🌞 Deze kaars brandt zachtjes voor jou — als
+				lichtje van geluk, vertrouwen en rust. Vandaag is je laatste examen
+				anatomie. Geloof in jezelf, jij kan dit! 💖🕯️
+			</p>
+		</div>
+
+		<script>
+			const tekst = `Lieve Alexandra 💌
+
+Je laatste examen... het is bijna zover,  
+anatomie nog — daarna ben je vrij als een ster. ✨  
+Je hebt zo hard gewerkt, zoveel gegeven,  
+en dat bewonder ik oprecht — echt, heel even.  
+
+Twijfel gerust, dat mag best een keer,  
+maar weet dat jij veel sterker bent dan je denkt, keer op keer.  
+Je inzet, je kracht — het straalt in alles door,  
+en net dat maakt je speciaal... misschien wel iets meer dan ervoor. 💖
+
+Zaterdag zie ik je, en daar kijk ik naar uit,   
+een moment zonder stress, zonder zorgen of geluid.  
+Gewoon jij en de rust — een glimlach, een blik,  
+een kleine ontmoeting waar ik stiekem naar kick. 😉   
+
+Veel succes morgen, ik geloof in jouw vuur,  
+en dit kaarsje brandt zachtjes… voor geluk, oprecht en puur. 🕯️`;
+
+			let i = 0;
+			const typed = document.getElementById("typedText");
+			const letterBox = document.getElementById("letter");
+			const igniteBtn = document.getElementById("igniteBtn");
+
+			function openLetter() {
+				document.getElementById("envelope-wrapper").style.display = "none";
+				letterBox.style.display = "block";
+				letterBox.style.overflowY = "hidden";
+				typeWriter();
+			}
+
+			function typeWriter() {
+				if (i < tekst.length) {
+					typed.innerHTML += tekst.charAt(i);
+
+					typed.scrollIntoView({ behavior: "smooth", block: "end" });
+
+					i++;
+					setTimeout(typeWriter, 45);
+				} else {
+					letterBox.style.overflowY = "auto";
+					igniteBtn.style.display = "block";
+					igniteBtn.scrollIntoView({ behavior: "smooth", block: "end" });
+				}
+			}
+
+			function showCandle() {
+				letterBox.style.display = "none";
+				document.getElementById("candle-section").style.display = "flex";
+			}
+
+			window.onload = () => {
+				document.getElementById("envelope-wrapper").style.display = "flex";
+			};
+		</script>
 	</body>
 </html>
