@@ -25,11 +25,19 @@
 			}
 
 			#envelope-wrapper {
-				position: relative;
 				display: flex;
+				flex-direction: column;
 				align-items: center;
 				justify-content: center;
+				gap: 15px;
 				animation: fadeIn 2s ease;
+			}
+
+			#envelope-tip {
+				font-size: 1em;
+				color: #ffebc8;
+				text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+				animation: bounce 2s infinite ease-in-out, fadeIn 1s ease forwards;
 			}
 
 			#envelope {
@@ -75,6 +83,7 @@
 					#e0dede 32px,
 					#e0dede 33px
 				);
+				background-attachment: local;
 				padding: 40px 25px 40px;
 				border-radius: 16px;
 				box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
@@ -83,6 +92,7 @@
 				position: relative;
 				overflow-y: hidden;
 				box-sizing: border-box;
+				scroll-behavior: smooth;
 			}
 
 			#typedText {
@@ -93,7 +103,7 @@
 			}
 
 			#igniteBtn {
-				margin-top: 20px;
+				margin-top: 30px;
 				padding: 12px 24px;
 				font-size: 1.05em;
 				font-weight: 500;
@@ -110,7 +120,9 @@
 
 			#igniteBtn:hover {
 				background-color: #ffc966;
-				transform: scale(1.03);
+				transform: scale(
+					1.03
+				); /* <- Alleen een subtiele schaal, zonder verschuiving */
 			}
 
 			#candle-section {
@@ -147,33 +159,6 @@
 				border-radius: 50%;
 				animation: flicker 0.3s infinite alternate;
 				box-shadow: 0 0 50px 20px rgba(255, 140, 0, 0.7);
-			}
-			#envelope-wrapper {
-				display: flex;
-				flex-direction: column; /* <<< belangrijk */
-				align-items: center;
-				justify-content: center;
-				animation: fadeIn 2s ease;
-				gap: 15px;
-			}
-
-			#envelope-tip {
-				font-size: 1em;
-				color: #ffebc8;
-				text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
-			}
-
-			@keyframes bounce {
-				0%,
-				100% {
-					transform: translateY(0);
-				}
-				50% {
-					transform: translateY(-5px);
-				}
-			}
-			#envelope-tip {
-				animation: bounce 2s infinite ease-in-out, fadeIn 1s ease forwards;
 			}
 
 			@keyframes flicker {
@@ -218,12 +203,21 @@
 					box-shadow: 0 0 20px 8px #f5d76e;
 				}
 			}
+
+			@keyframes bounce {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-5px);
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<div id="envelope-wrapper">
-			<p id="envelope-tip">Klik op de envelop om hem te openen ✉️</p>
-
+			<p id="envelope-tip">Klik op de envelop om hem te openen ✨</p>
 			<div id="envelope" onclick="openLetter()"></div>
 		</div>
 
@@ -246,9 +240,11 @@
 					text-align: center;
 				"
 			>
-				Goedemorgen Alexandra 🌞 Deze kaars brandt zachtjes voor jou — als
-				lichtje van geluk, vertrouwen en rust. Vandaag is je laatste examen
-				anatomie. Geloof in jezelf, jij kan dit! 💖🕯️
+				Goedemorgen Alexandra 🌞<br />
+				Deze kaars brandt zachtjes voor jou als lichtje van geluk, vertrouwen en
+				rust.<br />
+				Vandaag is je laatste examen anatomie.<br />
+				Geloof in jezelf jij kan dit! 💖🕯️
 			</p>
 		</div>
 
@@ -288,15 +284,13 @@ en dit kaarsje brandt zachtjes… voor geluk, oprecht en puur. 🕯️`;
 			function typeWriter() {
 				if (i < tekst.length) {
 					typed.innerHTML += tekst.charAt(i);
-
-					typed.scrollIntoView({ behavior: "smooth", block: "end" });
-
+					letterBox.scrollTop = letterBox.scrollHeight;
 					i++;
 					setTimeout(typeWriter, 45);
 				} else {
 					letterBox.style.overflowY = "auto";
 					igniteBtn.style.display = "block";
-					igniteBtn.scrollIntoView({ behavior: "smooth", block: "end" });
+					letterBox.scrollTop = letterBox.scrollHeight;
 				}
 			}
 
